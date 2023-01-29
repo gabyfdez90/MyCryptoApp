@@ -1,0 +1,5 @@
+**/.vscode/
+**/__pycache__/
+trader-cripto/
+.env
+config.py
