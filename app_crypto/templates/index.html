@@ -8,7 +8,30 @@
     <title>MyCrypto App</title>
   </head>
   <body>
-    <h1>Trader Crypto</h1>
-    <h3>(work in progress)</h3>
+    <div class="page__container">
+      <header>
+        <img
+          class="header__logo"
+          src="../static/img/logo_trader_crypto.png"
+          alt="logo company"
+        />
+      </header>
+      <div class="main-container">
+        <table summary="Trading History Table" id="trading-table">
+          <tr>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Orden desde</th>
+            <th>Cantidad inicial</th>
+            <th>Moneda obtenida</th>
+            <th>Cantidad al cambio</th>
+          </tr>
+        </table>
+      </div>
+      <footer>
+        <p>© Gabriela M. Fernández (2023)</p>
+      </footer>
+    </div>
+    <script src="../static/trader.js"></script>
   </body>
 </html>

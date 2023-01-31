@@ -11,4 +11,47 @@
 
 body {
     font-family: 'Istok Web';
+	background-color: #F5EDF0;
+	height:100vh;
+}
+
+header{
+	background-color: #886F68;
+	padding: 1.5rem;
+	padding-left: 5rem;
+}
+
+.header__logo{
+	height:8rem;
+}
+
+.main-container{
+	margin-left: 3rem;
+	padding: 2rem;
+}
+
+table{
+	border: 1px solid black;
+}
+
+th, td{
+	padding:1rem;
+	border: 1px solid black;
+	height:2rem;
+}
+
+th{
+	background-color: #D1CCDC;
+	color: #1C3762;
+}
+
+footer{
+	background-color: #886F68;
+	padding:1.5rem;
+	padding-left: 3.5rem;
+	font-size: 1.5rem;
+	position:absolute;
+	bottom: 0;
+	width: 100%;
+	font-weight: 700;
 }
