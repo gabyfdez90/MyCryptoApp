@@ -16,3 +16,14 @@ function addTableRow() {
   cell5.innerHTML = "Hello";
   cell6.innerHTML = "Hello";
 }
+
+let button = document.getElementById("go-button");
+let form = document.getElementById("trader-form");
+
+button.addEventListener("click", function () {
+  if (form.style.display === "none") {
+    form.style.display = "flex";
+  } else {
+    form.style.display = "none";
+  }
+});

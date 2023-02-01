@@ -17,16 +17,101 @@
         />
       </header>
       <div class="main-container">
-        <table summary="Trading History Table" id="trading-table">
-          <tr>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Orden desde</th>
-            <th>Cantidad inicial</th>
-            <th>Moneda obtenida</th>
-            <th>Cantidad al cambio</th>
-          </tr>
-        </table>
+        <div class="table-form-container">
+          <div class="table-container">
+            <table summary="Trading History Table" id="trading-table">
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Moneda cambiada</th>
+                <th>Cantidad inicial</th>
+                <th>Moneda obtenida</th>
+                <th>Cantidad al cambio</th>
+              </tr>
+            </table>
+          </div>
+          <div class="form-container" id="trader-form" style="display: none">
+            <div class="form-container__column">
+              <div class="form-container__input">
+                <p>Tiene:</p>
+                <select class="currency-available">
+                  <option>EUR</option>
+                  <option>ETH</option>
+                  <option>BNB</option>
+                  <option>ADA</option>
+                  <option>DOT</option>
+                  <option>BTC</option>
+                  <option>USDT</option>
+                  <option>XRP</option>
+                  <option>SOL</option>
+                  <option>MATIC</option>
+                </select>
+              </div>
+              <div class="form-container__input">
+                <p>Cantidad:</p>
+                <input placeholder="Escriba su número" id="quantity-from" />
+                <div class="tooltip">
+                  <span class="tooltiptext">Calcula</span>
+                  <button id="calculate-button">
+                    <img
+                      src="../static/img/calculator.svg"
+                      alt="calculator-icon"
+                      class="calculator tooltip"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="form-container__column">
+              <div class="form-container__input">
+                <p>Recibe:</p>
+                <select class="currency-available" default="ETH">
+                  <option>ETH</option>
+                  <option>EUR</option>
+                  <option>BNB</option>
+                  <option>ADA</option>
+                  <option>DOT</option>
+                  <option>BTC</option>
+                  <option>USDT</option>
+                  <option>XRP</option>
+                  <option>SOL</option>
+                  <option>MATIC</option>
+                </select>
+              </div>
+              <div class="form-container__input">
+                <p>Cantidad:</p>
+                <input placeholder="Aquí verá el cambio" id="quantity-from" />
+              </div>
+              <div class="form-container__input">
+                <p>Precio unitario:</p>
+                <input placeholder="Valor 1x1" id="quantity-from" />
+              </div>
+              <div class="form-container__buttons">
+                <button class="cancel-button">Cancelar</button>
+                <button class="confirm-button">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overview-section">
+          <div class="overview-section__item">
+            <p>Total invertido:</p>
+            <p>0</p>
+          </div>
+          <div class="overview-section__item">
+            <p>Total recuperado:</p>
+            <p>0</p>
+          </div>
+          <div class="overview-section__item">
+            <p>Valor de compra:</p>
+            <p>0</p>
+          </div>
+          <div class="overview-section__item">
+            <p>Valor actual:</p>
+            <p>0</p>
+          </div>
+          <button class="go-button" id="go-button">+</button>
+        </div>
       </div>
       <footer>
         <p>© Gabriela M. Fernández (2023)</p>
