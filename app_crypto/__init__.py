@@ -16,11 +16,27 @@ def index():
     return render_template('index.html')
 
 @app.route(f"/api/{VERSION}/all")
-def showTransactions():
+def show_transactions():
     try:
         transaction_history = select_all()
         return jsonify (
             {"data": transaction_history,
+            "status": "OK"}
+        ), HTTPStatus.OK
+    except sqlite3.Error as e:
+        return jsonify(
+            {
+            "data": str(e),
+            "status": "Error"
+            }
+        ), HTTPStatus.BAD_REQUEST
+    
+@app.route(f"/api/{VERSION}/tasa/<string:currency_from>/<string:currency_to>")
+def get_rate_transactions(currency_from, currency_to):
+    try:
+        rate= apply_exchange(currency_from, currency_to)
+        return jsonify (
+            {"data": rate,
             "status": "OK"}
         ), HTTPStatus.OK
     except sqlite3.Error as e:
