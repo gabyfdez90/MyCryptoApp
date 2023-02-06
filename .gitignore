@@ -3,3 +3,4 @@
 trader-cripto/
 .env
 config.py
+venv/
