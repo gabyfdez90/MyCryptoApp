@@ -34,22 +34,26 @@
             <div class="form-container__column">
               <div class="form-container__input">
                 <p>Tiene:</p>
-                <select class="currency-available">
-                  <option>EUR</option>
-                  <option>ETH</option>
-                  <option>BNB</option>
-                  <option>ADA</option>
-                  <option>DOT</option>
-                  <option>BTC</option>
-                  <option>USDT</option>
-                  <option>XRP</option>
-                  <option>SOL</option>
-                  <option>MATIC</option>
+                <select class="currency-available" id="currency-from">
+                  <option value="EUR">EUR</option>
+                  <option value="ETH">ETH</option>
+                  <option value="BNB">BNB</option>
+                  <option value="ADA">ADA</option>
+                  <option value="DOT">DOT</option>
+                  <option value="BTC">BTC</option>
+                  <option value="USDT">USDT</option>
+                  <option value="XRP">XRP</option>
+                  <option value="SOL">SOL</option>
+                  <option value="MATIC">MATIC</option>
                 </select>
               </div>
               <div class="form-container__input">
                 <p>Cantidad:</p>
-                <input placeholder="Escriba su número" id="quantity-from" />
+                <input
+                  placeholder="Escriba su número"
+                  id="quantity-from"
+                  default="0"
+                />
                 <div class="tooltip">
                   <span class="tooltiptext">Calcula</span>
                   <button id="calculate-button">
@@ -65,22 +69,26 @@
             <div class="form-container__column">
               <div class="form-container__input">
                 <p>Recibe:</p>
-                <select class="currency-available" default="ETH">
-                  <option>ETH</option>
-                  <option>EUR</option>
-                  <option>BNB</option>
-                  <option>ADA</option>
-                  <option>DOT</option>
-                  <option>BTC</option>
-                  <option>USDT</option>
-                  <option>XRP</option>
-                  <option>SOL</option>
-                  <option>MATIC</option>
+                <select class="currency-available" id="currency-to">
+                  <option value="ETH">ETH</option>
+                  <option value="EUR">EUR</option>
+                  <option value="BNB">BNB</option>
+                  <option value="ADA">ADA</option>
+                  <option value="DOT">DOT</option>
+                  <option value="BTC">BTC</option>
+                  <option value="USDT">USDT</option>
+                  <option value="XRP">XRP</option>
+                  <option value="SOL">SOL</option>
+                  <option value="MATIC">MATIC</option>
                 </select>
               </div>
               <div class="form-container__input">
                 <p>Cantidad:</p>
-                <input placeholder="Aquí verá el cambio" id="quantity-from" />
+                <input
+                  placeholder="Aquí verá el cambio"
+                  id="quantity-from"
+                  default="0"
+                />
               </div>
               <div class="form-container__input">
                 <p>Precio unitario:</p>
