@@ -36,8 +36,9 @@ def get_rate_transactions(currency_from, currency_to):
     try:
         rate= apply_exchange(currency_from, currency_to)
         return jsonify (
-            {"data": rate,
-            "status": "OK"}
+            {"status":"OK",
+            "rate": rate,
+            "currencies": [currency_from, currency_to]}
         ), HTTPStatus.OK
     except sqlite3.Error as e:
         return jsonify(

@@ -48,28 +48,26 @@ def calculate_currency_amount(crypto):
     Determine the total amount of each currency in our portfolio.
     """
 
-    conn1 = Connection("SELECT currency_to, SUM(quantity_to) FROM transactions WHERE currency_to=?", (crypto,))
-    obtained_amount = conn1.fetchone()
-  
+    obtained_amount = Connection("SELECT SUM(quantity_to) FROM transactions WHERE currency_to=?", (crypto,))
+    obtained_amount = obtained_amount.res.fetchone()
 
-    conn2 = Connection("SELECT currency_from, SUM(quantity_from) FROM transactions WHERE currency_from=?", (crypto,))
-    spent_amount = conn2.fetchone()
+    spent_amount = Connection("SELECT SUM(quantity_from) FROM transactions WHERE currency_from=?", (crypto,))
+    spent_amount = spent_amount.res.fetchone()
 
-    if obtained_amount is None:
+    if obtained_amount:
+        obtained_amount = obtained_amount[0]
+    if obtained_amount == None:
         obtained_amount = 0
-    else:
-        obtained_amount = obtained_amount[1]
 
-    if spent_amount is None:
+    if spent_amount:
+        spent_amount = spent_amount[0]
+    if spent_amount == None:
         spent_amount = 0
-    else:
-        spent_amount = spent_amount[1]
+
+    #Here was the issue with NoneType values
 
     actual_amount = obtained_amount - spent_amount
-
-    conn1.close()
-    conn2.close()
-
+    
     return actual_amount
 
 def apply_exchange(currency_from, currency_to):
@@ -85,4 +83,5 @@ def apply_exchange(currency_from, currency_to):
             return "No puede realizar este tradeo"
     else:
         return get_transaction_rate(currency_from, currency_to)
-
+    
+    #Imprime dos diccionarios, no sé por qué

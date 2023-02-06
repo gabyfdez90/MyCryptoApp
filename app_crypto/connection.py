@@ -8,5 +8,5 @@ class Connection:
         self.cur = self.con.cursor()
         self.res = self.cur.execute(querySQL, params)
 
-    def fetchone(self):
-        self.res = self.fetchone()
+    # def fetchone(self):
+    #     self.res = self.fetchone()
