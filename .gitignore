@@ -1,6 +1,6 @@
 **/.vscode/
 **/__pycache__/
-trader-cripto/
+venv/
 .env
 config.py
-venv/
+venv
