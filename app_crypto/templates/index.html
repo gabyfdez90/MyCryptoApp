@@ -30,7 +30,7 @@
               </tr>
             </table>
           </div>
-          <div class="form-container" id="trader-form" style="display: none">
+          <form class="form-container" id="trader-form" style="display: none">
             <div class="form-container__column">
               <div class="form-container__input">
                 <p>Tiene:</p>
@@ -84,15 +84,11 @@
               </div>
               <div class="form-container__input">
                 <p>Cantidad:</p>
-                <input
-                  placeholder="Aquí verá el cambio"
-                  id="quantity-from"
-                  default="0"
-                />
+                <input placeholder="Aquí verá el cambio" id="quantity-to" />
               </div>
               <div class="form-container__input">
                 <p>Precio unitario:</p>
-                <input placeholder="Valor 1x1" id="quantity-from" />
+                <input placeholder="Valor 1x1" id="unit-price" />
               </div>
               <div class="form-container__buttons">
                 <button class="cancel-button" id="cancel-button">
@@ -103,7 +99,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
         <div class="overview-section">
           <div class="overview-section__item">

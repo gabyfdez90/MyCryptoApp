@@ -49,32 +49,29 @@ async function renderTableHistory() {
 
 // Function that registres the transaction and send it through POST
 async function registerMovement() {
-  const currency_from = document.getElementById("currency-from").value;
-  const quantity_from = document.getElementById("quantity-from").value;
-  const currency_to = document.getElementById("currency-to").value;
-  const quantity_to = document.getElementById("quantity_to").value;
-  console.log(currency_to);
+  const currencyFrom = document.getElementById("currency-from").value;
+  const quantityFrom = document.getElementById("quantity-from").value;
+  const currencyTo = document.getElementById("currency-to").value;
+  const quantityTo = document.getElementById("quantity-to").value;
+
   try {
-    const response = await fetch("http://localhost:5000/api/v1.0/new", {
+    const response = await fetch("http://localhost:5000/api/v1/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        currency_from: currency_from,
-        quantity_from: quantity_from,
-        currency_to: currency_to,
-        quantity_to: quantity_to,
+        currency_from: currencyFrom,
+        quantity_from: quantityFrom,
+        currency_to: currencyTo,
+        quantity_to: quantityTo,
       }),
     });
 
-    if (response.status === 201) {
-      alert("La transacción ha sido registrada");
-    } else {
-      alert("Un error ocurrió durante el registro.");
-    }
+    const result = await response.json();
+    console.log(result);
   } catch (error) {
-    alert("El registro de movimiento falló.");
+    console.error(error);
   }
 }
 
