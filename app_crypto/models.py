@@ -83,7 +83,6 @@ def apply_exchange(currency_from, currency_to):
             return "No puede realizar este tradeo"
     else:
         return get_transaction_rate(currency_from, currency_to)
-    
 
 def insert(movement):
     """
