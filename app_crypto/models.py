@@ -84,4 +84,11 @@ def apply_exchange(currency_from, currency_to):
     else:
         return get_transaction_rate(currency_from, currency_to)
     
-    #Imprime dos diccionarios, no sé por qué
+
+def insert(movement):
+    """
+    Adds to the database the row that cames from the frontend through an API.
+    """
+    connectInsert = Connection("INSERT INTO transactions(date,time,currency_from, quantity_from, currency_to, quantity_to) values(?,?,?)",movement)
+    connectInsert.con.commit()
+    connectInsert.con.close()

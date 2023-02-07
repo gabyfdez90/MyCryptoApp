@@ -1,4 +1,4 @@
-let create_request = new XMLHttpRequest();
+//let create_request = new XMLHttpRequest();
 // const transaction_request = new XMLHttpRequest();
 
 // Function to show/hide form
@@ -47,29 +47,41 @@ async function renderTableHistory() {
   }
 }
 
-// Function that handles form
-//pending
+// Function that registres the transaction and send it through POST
+async function registerMovement() {
+  const currency_from = document.getElementById("currency-from").value;
+  const quantity_from = document.getElementById("quantity-from").value;
+  const currency_to = document.getElementById("currency-to").value;
+  const quantity_to = document.getElementById("quantity_to").value;
+  console.log(currency_to);
+  try {
+    const response = await fetch("http://localhost:5000/api/v1.0/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        currency_from: currency_from,
+        quantity_from: quantity_from,
+        currency_to: currency_to,
+        quantity_to: quantity_to,
+      }),
+    });
 
-// Function to registrer data from transaction form
-function registerTransaction(event) {
-  event.preventDefault();
-
-  const currency_available = document.getElementById("currency_to");
-  const quantity_available = document.getElementById("quantity-from");
-  const currency_desired = document.getElementById("currency_from");
-  const quantity_to_obtain = document.getElementById("quantity-to");
-
-  if (quantity_available === "0" || quantity_available === "") {
-    alert("Debes agregar una cantidad inicial.");
+    if (response.status === 201) {
+      alert("La transacción ha sido registrada");
+    } else {
+      alert("Un error ocurrió durante el registro.");
+    }
+  } catch (error) {
+    alert("El registro de movimiento falló.");
   }
-  create_request.open("POST", "http://localhost:5000/api/v1/new");
-  create_request.onload = create_request_handler;
-  create_request.onerror = function () {
-    alert("No se ha podido ingresar la transacción");
-    create_request.setRequestHeader("Content-Type", "application/json");
-  };
 }
 
 window.onload = function () {
   renderTableHistory();
+
+  document
+    .getElementById("confirm-button")
+    .addEventListener("click", registerMovement);
 };

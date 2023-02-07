@@ -47,3 +47,21 @@ def get_rate_transactions(currency_from, currency_to):
             "status": "Error"
             }
         ), HTTPStatus.BAD_REQUEST
+
+@app.route(f"/api/{VERSION}/new",methods=["POST"])
+def new():
+    registrer = request.json
+    try:
+        insert([registrer['currency_from'],registrer['quantity_from'],registrer['currency_to'],registrer['quantity_to'] ])
+        return jsonify(
+            {
+                "status": "OK"
+            }
+        ),HTTPStatus.CREATED 
+    except sqlite3.Error as e:
+         return jsonify(
+            {
+                "data": str(e),
+                "status": "Error"
+            }
+        ),HTTPStatus.BAD_REQUEST
