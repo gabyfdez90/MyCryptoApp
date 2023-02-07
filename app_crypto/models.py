@@ -89,6 +89,6 @@ def insert(movement):
     """
     Adds to the database the row that cames from the frontend through an API.
     """
-    connectInsert = Connection("INSERT INTO transactions(date,time,currency_from, quantity_from, currency_to, quantity_to) values(?,?,?,?,?,?)",movement)
+    connectInsert = Connection("INSERT INTO transactions(date, time, currency_from, quantity_from, currency_to, quantity_to) values(?,?,?,?,?,?)",movement)
     connectInsert.con.commit()
     connectInsert.con.close()

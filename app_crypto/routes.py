@@ -49,6 +49,14 @@ def get_rate_transactions(currency_from, currency_to):
 def new():
     registrer = request.json
     time = datetime.now()
+    money_available= calculate_currency_amount(registrer['quantity_from'])
+    if registrer['currency_from'] != "EUR":
+        if money_available < registrer['quantity_to']:
+            return jsonify(
+                {
+                    "status": "fail",
+                    "message": "Saldo insuficiente"
+                }),HTTPStatus.BAD_REQUEST
     try:
         insert([date.today(),
                 time.strftime("%H:%M:%S"),
@@ -61,10 +69,11 @@ def new():
                 "status": "OK"
             }
         ),HTTPStatus.CREATED 
-    except sqlite3.Error as e:
+    except:
+         sqlite3.Error
          return jsonify(
             {
-                "data": str(e),
+                "data": str(sqlite3.Error),
                 "status": "Error"
             }
         ),HTTPStatus.BAD_REQUEST
