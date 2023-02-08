@@ -13,7 +13,7 @@ button.addEventListener("click", function () {
   }
 });
 
-// Function to connect with CoinAPI
+// Function to connect with list of movements API
 async function getTransactionHistory() {
   const data = await fetch("http://localhost:5000/api/v1/all");
   return data.json();
@@ -47,12 +47,45 @@ async function renderTableHistory() {
   }
 }
 
+// Function to get values from trade rate API
+async function getRateFromAPI() {
+  let currency_from = document.getElementById("currency-from").value;
+  let currency_to = document.getElementById("currency-to").value;
+  console.log(currency_from);
+
+  const data = await fetch(
+    `http://localhost:5000/api/v1/tasa/${currency_from}/${currency_to}`
+  );
+  console.log(data);
+  return data.json();
+}
+
+//Function to fill up values in transaction from
+async function addValuesForm() {
+  const quantity_to_placeholder = document.getElementById("quantity-to");
+  const unit_price_placeholder = document.getElementById("unit-price");
+  const quantity_from_placeholder = document.getElementById("quantity-from");
+  const quantity_from = quantity_from_placeholder.value;
+  const data = await getRateFromAPI();
+  if (data) {
+    const quantity_to = data.rate * quantity_from;
+    quantity_to_placeholder.value = quantity_to.toFixed(10);
+
+    const unit_price = data.rate;
+    unit_price_placeholder.value = unit_price.toFixed(10);
+  }
+}
+
 // Function that registres the transaction and send it through POST
 async function registerMovement() {
   const currencyFrom = document.getElementById("currency-from").value;
   const quantityFrom = document.getElementById("quantity-from").value;
   const currencyTo = document.getElementById("currency-to").value;
   const quantityTo = document.getElementById("quantity-to").value;
+
+  if (currencyFrom === currencyTo) {
+    alert("Seleccione dos monedas diferentes.");
+  }
 
   try {
     const response = await fetch("http://localhost:5000/api/v1/new", {
@@ -81,4 +114,8 @@ window.onload = function () {
   document
     .getElementById("confirm-button")
     .addEventListener("click", registerMovement);
+
+  document
+    .getElementById("calculate-button")
+    .addEventListener("click", addValuesForm);
 };

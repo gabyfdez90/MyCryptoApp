@@ -49,7 +49,7 @@ def get_rate_transactions(currency_from, currency_to):
 def new():
     registrer = request.json
     time = datetime.now()
-    money_available= calculate_currency_amount(registrer['quantity_from'])
+    money_available= calculate_currency_amount(registrer['currency_from'])
     if registrer['currency_from'] != "EUR" and money_available < registrer['quantity_from']:
         return jsonify(
             {
