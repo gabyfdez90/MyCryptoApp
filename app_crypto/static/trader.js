@@ -108,6 +108,13 @@ async function registerMovement() {
   }
 }
 
+//Function that triggers when hit the cancel button
+function cancelTransaction() {
+  document.getElementById("quantity-from").value = "";
+  document.getElementById("quantity-to").value = "";
+  document.getElementById("unit-price").value = "";
+}
+
 window.onload = function () {
   renderTableHistory();
 
@@ -118,4 +125,8 @@ window.onload = function () {
   document
     .getElementById("calculate-button")
     .addEventListener("click", addValuesForm);
+
+  document
+    .getElementById("cancel-button")
+    .addEventListener("click", cancelTransaction);
 };
