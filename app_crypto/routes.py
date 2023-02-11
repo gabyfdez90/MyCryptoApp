@@ -49,30 +49,31 @@ def get_rate_transactions(currency_from, currency_to):
 def new():
     registrer = request.json
     time = datetime.now()
-    money_available= calculate_currency_amount(registrer['currency_from'])
-    if registrer['currency_from'] != "EUR" and money_available < registrer['quantity_from']:
+    money_available= calculate_currency_amount(registrer["currency_from"])
+    if registrer['currency_from'] != "EUR" and registrer["quantity_from"] < money_available:
         return jsonify(
             {
                 "status": "fail",
                 "message": "Saldo insuficiente"
             }),HTTPStatus.BAD_REQUEST
-    try:
-        insert([date.today(),
-                time.strftime("%H:%M:%S"),
-                registrer['currency_from'],
-                registrer['quantity_from'],
-                registrer['currency_to'],
-                registrer['quantity_to']])
-        return jsonify(
-            {
-                "status": "success",
-                "transaction": f"{registrer['currency_from']} to {registrer['currency_to']}"
-            }
-        ),HTTPStatus.CREATED 
-    except sqlite3.Error as e:
-        return jsonify(
-            {
-                "data": str(e),
-                "status": "Error"
-            }
-        ),HTTPStatus.BAD_REQUEST
+    else:
+        try:
+            insert([date.today(),
+                    time.strftime("%H:%M:%S"),
+                    registrer['currency_from'],
+                    registrer['quantity_from'],
+                    registrer['currency_to'],
+                    registrer['quantity_to']])
+            return jsonify(
+                {
+                    "status": "success",
+                    "transaction": f"{registrer['currency_from']} to {registrer['currency_to']}"
+                }
+            ),HTTPStatus.CREATED 
+        except sqlite3.Error as e:
+            return jsonify(
+                {
+                    "data": str(e),
+                    "status": "Error"
+                }
+            ),HTTPStatus.BAD_REQUEST
