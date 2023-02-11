@@ -67,6 +67,7 @@ async function addValuesForm() {
   const quantity_from_placeholder = document.getElementById("quantity-from");
   const quantity_from = quantity_from_placeholder.value;
   const data = await getRateFromAPI();
+
   if (data) {
     const quantity_to = data.rate * quantity_from;
     quantity_to_placeholder.value = quantity_to.toFixed(10);
@@ -76,12 +77,22 @@ async function addValuesForm() {
   }
 }
 
+//Function that cleans up the table
+async function clearTable() {
+  const table = document.getElementById("trading-table");
+  const rowCount = table.rows.length;
+
+  for (let i = rowCount - 1; i >= 1; i--) {
+    table.deleteRow(i);
+  }
+}
 // Function that registres the transaction and send it through POST
 async function registerMovement() {
   const currencyFrom = document.getElementById("currency-from").value;
   const quantityFrom = document.getElementById("quantity-from").value;
   const currencyTo = document.getElementById("currency-to").value;
   const quantityTo = document.getElementById("quantity-to").value;
+  const unitPrice = document.getElementById("unit-price").value;
 
   if (currencyFrom === currencyTo) {
     alert("Seleccione dos monedas diferentes.");
@@ -98,14 +109,17 @@ async function registerMovement() {
         quantity_from: quantityFrom,
         currency_to: currencyTo,
         quantity_to: quantityTo,
+        unit_price: unitPrice,
       }),
     });
 
     const result = await response.json();
-    console.log(result);
+    alert(result.message);
   } catch (error) {
-    console.error(error);
+    alert(result.message);
   }
+  clearTable();
+  renderTableHistory();
 }
 
 //Function that triggers when hit the cancel button

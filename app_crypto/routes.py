@@ -7,6 +7,7 @@ from http import HTTPStatus
 from config import *
 from app_crypto import app
 from datetime import datetime, date
+from flask_cors import cross_origin
 
 @app.route("/")
 def index():
@@ -31,7 +32,7 @@ def show_transactions():
 @app.route(f"/api/{VERSION}/tasa/<string:currency_from>/<string:currency_to>")
 def get_rate_transactions(currency_from, currency_to):
     try:
-        rate= apply_exchange(currency_from, currency_to)
+        rate= get_transaction_rate(currency_from, currency_to)
         return jsonify (
             {"status":"OK",
             "rate": rate,
@@ -50,12 +51,12 @@ def new():
     registrer = request.json
     time = datetime.now()
     money_available= calculate_currency_amount(registrer["currency_from"])
-    if registrer['currency_from'] != "EUR" and registrer["quantity_from"] < money_available:
-        return jsonify(
-            {
-                "status": "fail",
+    if registrer['currency_from'] != "EUR" and float(registrer["quantity_from"]) > money_available:
+         return jsonify(
+             {
+                 "status": "fail",
                 "message": "Saldo insuficiente"
-            }),HTTPStatus.BAD_REQUEST
+            }),HTTPStatus.ACCEPTED
     else:
         try:
             insert([date.today(),
@@ -67,13 +68,14 @@ def new():
             return jsonify(
                 {
                     "status": "success",
-                    "transaction": f"{registrer['currency_from']} to {registrer['currency_to']}"
+                    "transaction": f"{registrer['currency_from']} to {registrer['currency_to']}",
+                    "message": "Transacción exitosa"
                 }
             ),HTTPStatus.CREATED 
         except sqlite3.Error as e:
             return jsonify(
-                {
-                    "data": str(e),
-                    "status": "Error"
-                }
-            ),HTTPStatus.BAD_REQUEST
+                    {
+                        "data": str(e),
+                        "status": "Error"
+                    }
+                ),HTTPStatus.BAD_REQUEST

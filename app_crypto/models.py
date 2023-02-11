@@ -70,24 +70,12 @@ def calculate_currency_amount(crypto):
     
     return actual_amount
 
-def apply_exchange(currency_from, currency_to):
-    """
-    Determine if the trade action could be performed and its exchange rate.
-    """
-    currency_amount = calculate_currency_amount(currency_from)
-
-    if currency_from != "EUR":
-        if get_transaction_rate(currency_from, currency_to) >= currency_amount:
-            return get_transaction_rate(currency_from, currency_to)
-        else:
-            return "No puede realizar este tradeo"
-    else:
-        return get_transaction_rate(currency_from, currency_to)
 
 def insert(movement):
     """
     Adds to the database the row that cames from the frontend through an API.
     """
+    
     connectInsert = Connection("INSERT INTO transactions(date, time, currency_from, quantity_from, currency_to, quantity_to) values(?,?,?,?,?,?)",movement)
     connectInsert.con.commit()
     connectInsert.con.close()

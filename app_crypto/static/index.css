@@ -34,6 +34,7 @@ header{
 	height:40vh;
 	border: 2px solid black;
 	width:54rem;
+	Overflow-y:scroll;
 }
 
 th, td{
