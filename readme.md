@@ -4,7 +4,7 @@ Una aplicación para comprar, tradear y vender criptomonedas.
 
 Se realizó con el framework Flask de Python, motor de bases de datos SQLite y Javascript para el frontend.
 
-![MyCrypto App (3)](https://user-images.githubusercontent.com/117080861/218326533-77e3327e-5700-4f20-9a04-e97d4919df64.gif)
+![crypto app shorter](https://user-images.githubusercontent.com/117080861/218327611-fb37f046-1d8d-4c92-9d00-1d7dad1d6f05.gif)
 
 ## Instalación
 
