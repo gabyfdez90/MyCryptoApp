@@ -25,25 +25,11 @@ if __name__ == "__main__":
             spent_amount = spent_amount[0]
         if spent_amount == None:
             spent_amount = 0
-            print(spent_amount)
 
         actual_amount = obtained_amount - spent_amount
     
         return actual_amount
 
-def get_transaction_rate(currency_from, currency_to):
-    """
-    Get from CoinAPi.io the current transaction rate between two currencies.
-    """
-
-    r = requests.get(f"https://rest.coinapi.io/v1/exchangerate/{currency_from}/{currency_to}?apikey={COINAPI_KEY}")
-
-    transaction_json = r.json()
-
-    if r.status_code == 200:
-        return transaction_json['rate']
-    else:
-        return "Ocurrió un error"
 
 def get_cryptos_value():
     """
@@ -52,7 +38,6 @@ def get_cryptos_value():
     
     con = Connection('SELECT currency_to FROM transactions WHERE currency_to != "EUR";')
     active_cryptos = con.cur.fetchall()
-    print(active_cryptos)
 
     total_value = 0
 
@@ -77,9 +62,6 @@ def get_recovered_inversion():
 
 amount = calculate_currency_amount("USDT")
 print(amount)
-
-rate = get_transaction_rate("ETH", "EUR")
-print(rate)
 
 value = get_cryptos_value()
 print(value)

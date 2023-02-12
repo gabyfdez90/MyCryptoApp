@@ -85,7 +85,7 @@ def get_info_status():
     try:
         euros_invested = get_inversion_total()
         euros_recovered = get_recovered_inversion()
-        purchase_value = get_inversion_total() - get_recovered_inversion()
+        purchase_value = round((euros_invested - euros_recovered), 2)
         current_assets = get_cryptos_value()
 
         return jsonify(

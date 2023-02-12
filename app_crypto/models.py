@@ -63,8 +63,6 @@ def calculate_currency_amount(crypto):
     if spent_amount == None:
         spent_amount = 0
 
-    #Here was the issue with NoneType values
-
     actual_amount = obtained_amount - spent_amount
     
     return actual_amount
@@ -87,7 +85,7 @@ def get_inversion_total():
     con = Connection('SELECT SUM(quantity_from) FROM transactions WHERE currency_from = "EUR";')
     total_invested = con.cur.fetchone()[0]
     con.con.close()
-    
+
     return total_invested
 
 def get_recovered_inversion():
@@ -101,6 +99,8 @@ def get_recovered_inversion():
 
     if total_recovered == None:
         total_recovered = 0
+
+    total_recovered = round(total_recovered, 2)
 
     return total_recovered
 
