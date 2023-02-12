@@ -39,6 +39,6 @@ La base de datos fue creada en SQLite, y consta de una sola tabla ("transactions
 
   `flask --app hello run -p 5001`
   
-  ## Vista de la aplicación
+## Vista de la aplicación
   
-  ![app_crypto](https://user-images.githubusercontent.com/117080861/218326105-8fed690b-6e27-4466-bcce-67a23fe216e5.png)
+![app_crypto](https://user-images.githubusercontent.com/117080861/218326105-8fed690b-6e27-4466-bcce-67a23fe216e5.png)
