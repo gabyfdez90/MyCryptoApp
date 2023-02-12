@@ -94,8 +94,8 @@ def get_cryptos_value():
         total_value = round(total_value, 2)
 
 
-amount = calculate_currency_amount("USDT")
-print(amount)
+# amount = calculate_currency_amount("USDT")
+# print(amount)
 
 # value = get_cryptos_value()
 # print(value)
@@ -103,5 +103,5 @@ print(amount)
 # euros = get_recovered_inversion()
 # print(euros)
 
-rate = get_transaction_rate("ETH", "EUR")
-print(rate)
+# rate = get_transaction_rate("ETH", "EUR")
+# print(rate)

@@ -132,7 +132,7 @@ function cancelTransaction() {
 async function getStatusFromAPI() {
   const api_response = await fetch("http://localhost:5000/api/v1/status");
   const data = await api_response.json();
-  console.log(data);
+
   return data;
 }
 
@@ -144,8 +144,6 @@ function writeInversionStatus() {
   let currentAssets_placeholder = document.getElementById("current-assets");
 
   getStatusFromAPI().then((data) => {
-    console.log(data.data);
-
     invested_placeholder.textContent = data.data.invested;
     recovered_placeholder.textContent = data.data.recovered;
     purchaseValue_placeholder.textContent = data.data.purchase_value;
