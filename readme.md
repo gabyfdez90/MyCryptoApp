@@ -24,6 +24,14 @@ La base de datos fue creada en SQLite, y consta de una sola tabla ("transactions
 
 ![ddbb](https://user-images.githubusercontent.com/117080861/218326026-f95c1b16-901f-4438-9563-237c5f14c971.png)
 
+## Consultas a CoinAPI
+
+La aplicación está actualizada en tiempo real con el valor de las diferentes monedas que aparecen en ella. 
+
+Esto es posible gracias a la conexión con [COINAPI](https://www.coinapi.io/pricing?apikey): una llave gratuita está al alcance de cualquier usuario con correo electrónico.
+
+Una vez obtenida la APIKey, puede agregarse a un archivo config tal cual aparece en config_template.py .
+
 ## Comandos útiles
 
 - Para ejecutar el servidor:
