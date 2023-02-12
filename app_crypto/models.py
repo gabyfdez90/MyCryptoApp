@@ -112,7 +112,6 @@ def get_cryptos_value():
     
     con = Connection('SELECT currency_to FROM transactions WHERE currency_to != "EUR";')
     active_cryptos = con.cur.fetchall()
-    print(active_cryptos)
 
     total_value = 0
 
@@ -120,6 +119,8 @@ def get_cryptos_value():
         crypto = crypto[0]
         crypto_amount = calculate_currency_amount(crypto)
         rate = get_transaction_rate(crypto, "EUR")
+        print(rate)
+        print(crypto_amount)
         crypto_value = rate * crypto_amount
         total_value += crypto_value
 

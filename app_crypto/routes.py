@@ -94,7 +94,7 @@ def get_info_status():
             'data' : {
             'invested': euros_invested,
             'recovered': euros_recovered,
-            'purchase value': purchase_value,
+            'purchase_value': purchase_value,
             'current_assets' : current_assets
             }
             }

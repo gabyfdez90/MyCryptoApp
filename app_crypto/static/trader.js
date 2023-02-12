@@ -130,27 +130,27 @@ function cancelTransaction() {
 
 // Function that get investment status from endpoint
 async function getStatusFromAPI() {
-  const data = await fetch("http://localhost:5000/api/v1/status");
-
+  const api_response = await fetch("http://localhost:5000/api/v1/status");
+  const data = await api_response.json();
   console.log(data);
-  return data.json();
+  return data;
 }
 
 // Function that write investment status on screen
 function writeInversionStatus() {
-  let invested = document.getElementById("total-invested");
-  let recovered = document.getElementById("total-recovered");
-  let purchaseValue = document.getElementById("purchase-value");
-  let currentAssets = document.getElementById("current-assets");
+  let invested_placeholder = document.getElementById("total-invested");
+  let recovered_placeholder = document.getElementById("total-recovered");
+  let purchaseValue_placeholder = document.getElementById("purchase-value");
+  let currentAssets_placeholder = document.getElementById("current-assets");
 
-  const data = getStatusFromAPI();
+  getStatusFromAPI().then((data) => {
+    console.log(data.data);
 
-  if (data) {
-    invested.value = data.invested;
-    recovered.value = data.recovered;
-    purchaseValue.value = data.purchaseValue;
-    currentAssets.value = data.currentAssets;
-  }
+    invested_placeholder.textContent = data.data.invested;
+    recovered_placeholder.textContent = data.data.recovered;
+    purchaseValue_placeholder.textContent = data.data.purchase_value;
+    currentAssets_placeholder.textContent = data.data.current_assets;
+  });
 }
 
 window.onload = function () {
@@ -170,6 +170,6 @@ window.onload = function () {
     .addEventListener("click", cancelTransaction);
 
   document
-    .getElementById("status-section")
+    .getElementById("status-button")
     .addEventListener("click", writeInversionStatus);
 };
