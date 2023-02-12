@@ -22,7 +22,7 @@ async function getTransactionHistory() {
 // Function to fill content to the table
 async function renderTableHistory() {
   const table_data = await getTransactionHistory();
-  console.log("data", table_data);
+
   if (table_data) {
     const table = document.getElementById("trading-table");
     const movements = table_data.data;
@@ -51,12 +51,11 @@ async function renderTableHistory() {
 async function getRateFromAPI() {
   let currency_from = document.getElementById("currency-from").value;
   let currency_to = document.getElementById("currency-to").value;
-  console.log(currency_from);
 
   const data = await fetch(
     `http://localhost:5000/api/v1/tasa/${currency_from}/${currency_to}`
   );
-  console.log(data);
+
   return data.json();
 }
 
@@ -129,8 +128,34 @@ function cancelTransaction() {
   document.getElementById("unit-price").value = "";
 }
 
+// Function that get investment status from endpoint
+async function getStatusFromAPI() {
+  const data = await fetch("http://localhost:5000/api/v1/status");
+
+  console.log(data);
+  return data.json();
+}
+
+// Function that write investment status on screen
+function writeInversionStatus() {
+  let invested = document.getElementById("total-invested");
+  let recovered = document.getElementById("total-recovered");
+  let purchaseValue = document.getElementById("purchase-value");
+  let currentAssets = document.getElementById("current-assets");
+
+  const data = getStatusFromAPI();
+
+  if (data) {
+    invested.value = data.invested;
+    recovered.value = data.recovered;
+    purchaseValue.value = data.purchaseValue;
+    currentAssets.value = data.currentAssets;
+  }
+}
+
 window.onload = function () {
   renderTableHistory();
+  writeInversionStatus();
 
   document
     .getElementById("confirm-button")
@@ -143,4 +168,8 @@ window.onload = function () {
   document
     .getElementById("cancel-button")
     .addEventListener("click", cancelTransaction);
+
+  document
+    .getElementById("status-section")
+    .addEventListener("click", writeInversionStatus);
 };

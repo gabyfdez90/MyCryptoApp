@@ -103,6 +103,6 @@ def get_info_status():
             return jsonify(
                     {
                         "data": str(e),
-                        "status": "Error"
+                        "status": "fail"
                     }
                 ),HTTPStatus.BAD_REQUEST
