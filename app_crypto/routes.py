@@ -79,3 +79,30 @@ def new():
                         "status": "Error"
                     }
                 ),HTTPStatus.BAD_REQUEST
+        
+@app.route(f"/api/{VERSION}/status")
+def get_info_status():
+    try:
+        euros_invested = get_inversion_total()
+        euros_recovered = get_recovered_inversion()
+        purchase_value = get_inversion_total() - get_recovered_inversion()
+        current_assets = get_cryptos_value()
+
+        return jsonify(
+            {
+            'status' : 'success',
+            'data' : {
+            'invested': euros_invested,
+            'recovered': euros_recovered,
+            'purchase value': purchase_value,
+            'current_assets' : current_assets
+            }
+            }
+        )
+    except sqlite3.Error as e:
+            return jsonify(
+                    {
+                        "data": str(e),
+                        "status": "Error"
+                    }
+                ),HTTPStatus.BAD_REQUEST
