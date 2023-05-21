@@ -18,13 +18,23 @@ Una vez creado el entorno virtual, el siguiente comando sirve para instalarse la
 
 `pip install -r requirements.txt`
 
-## Base de datos
+### Archivo config.py
+
+Para arrancar el proyecto en local resulta indispensable crearse un archivo config.py, a partir de la guía existente en config_template.py.
+
+Esencialmente, debe alojar tres variables: 
+
+ORIGIN_DATA = "data/trader-log.sqlite"
+COINAPI_KEY = [API_KEY]
+VERSION = "v1"
+
+### Base de datos
 
 La base de datos fue creada en SQLite, y consta de una sola tabla ("transactions") con las siguientes columnas:
 
 ![ddbb](https://user-images.githubusercontent.com/117080861/218326026-f95c1b16-901f-4438-9563-237c5f14c971.png)
 
-## Consultas a CoinAPI
+### Consultas a CoinAPI
 
 La aplicación está actualizada en tiempo real con el valor de las diferentes monedas que aparecen en ella. 
 
