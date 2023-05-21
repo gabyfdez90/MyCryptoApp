@@ -59,7 +59,7 @@ async function getRateFromAPI() {
   return data.json();
 }
 
-//Function to fill up values in transaction from
+//Function to fill up values in transaction form
 async function addValuesForm() {
   const quantity_to_placeholder = document.getElementById("quantity-to");
   const unit_price_placeholder = document.getElementById("unit-price");
@@ -95,30 +95,32 @@ async function registerMovement() {
 
   if (currencyFrom === currencyTo) {
     alert("Seleccione dos monedas diferentes.");
-  }
+  } else if (quantityFrom <= 0 || quantityTo <= 0) {
+    alert("Esta cantidad no es válida.");
+  } else {
+    try {
+      const response = await fetch("http://localhost:5000/api/v1/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          currency_from: currencyFrom,
+          quantity_from: quantityFrom,
+          currency_to: currencyTo,
+          quantity_to: quantityTo,
+          unit_price: unitPrice,
+        }),
+      });
 
-  try {
-    const response = await fetch("http://localhost:5000/api/v1/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        currency_from: currencyFrom,
-        quantity_from: quantityFrom,
-        currency_to: currencyTo,
-        quantity_to: quantityTo,
-        unit_price: unitPrice,
-      }),
-    });
-
-    const result = await response.json();
-    alert(result.message);
-  } catch (error) {
-    alert(result.message);
+      const result = await response.json();
+      alert(result.message);
+    } catch (error) {
+      alert(result.message);
+    }
+    clearTable();
+    renderTableHistory();
   }
-  clearTable();
-  renderTableHistory();
 }
 
 //Function that triggers when hit the cancel button
