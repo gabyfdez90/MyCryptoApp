@@ -46,16 +46,16 @@ Una vez obtenida la APIKey, puede agregarse a un archivo config tal cual aparece
 
 - Para ejecutar el servidor:
 
-`flask --app trader-cripto run`
+`flask --app app_crypto run`
 
 - Para actualizar en tiempo real el servidor:
 
-` flask --app trader-cripto --debug run`
+` flask --app app-crypto --debug run`
 
 - Para lanzar el servidor en un puerto diferente al predeterminado :
   Esto se utiliza en caso de que el puerto 5000 este ocupado.
 
-  `flask --app hello run -p 5001`
+ `flask --app hello run -p 5001`
   
 ## Vista de la aplicación
   
