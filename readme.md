@@ -2,7 +2,7 @@
 
 Una aplicación para comprar, tradear y vender criptomonedas.
 
-Se realizó con el framework Flask de Python, motor de bases de datos SQLite y Javascript para el frontend.
+Se realizó con el framework Flask de Python como backend, el motor de bases de datos SQLite y HTML/CSS/Javascript para el frontend.
 
 ![crypto app shorter](https://user-images.githubusercontent.com/117080861/218327611-fb37f046-1d8d-4c92-9d00-1d7dad1d6f05.gif)
 
